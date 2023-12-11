@@ -1,0 +1,26 @@
+<!-- Table-section -->
+<section class="contact-section" id="result" style="padding-bottom: 50px; background-color: #f8f9fa;">
+    <div class="container">
+        <div class="title-box centred" style="padding: 10px 0; background-color: #007bff; color: #fff; border-radius: 5px;">
+            <div class="sec-title">Prediction Result</div>
+        </div>
+        <div class="row" style="margin-top: 20px;">
+            <div class="col-lg-8 col-md-12 col-sm-12 content-column">
+                <div class="inner-content" style="background-color: #c95858; padding: 20px; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+                    <div class="contact-form-area">
+                        <p style="margin: 0; color: #000; text-transform: capitalize; font-size: 25px; font-weight: bold;">{{ model }} Model</p>
+                        <p style="margin: 0; color: #000; text-transform: capitalize; font-size: medium; font-weight: bold;"> Predicted Label is: {{ labels[pred] }}</p>
+                        Accuracy : {{ (probs|max) }}% | Prediction Time : {{ (run_time) }} second
+                        <input type="hidden" id="probability" value={{(probs|max)}}>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12 col-sm-12 sidebar-column">
+                <div class="sidebar-content" style="background-color: #ffffff; padding: 20px; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+                    <img src="{{ url_for('static', filename=img) }}" alt="" class="img-fluid" style="height: 300px; width: 300px; border-radius: 5px;">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- final-section end -->

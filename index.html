@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .contact-section {
+            background-color: #f8f9fa;
+            padding-top: 50px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .centered {
+            text-align: center;
+        }
+
+        .sec-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .prediction-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #image-preview {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        .input-container {
+            margin-top: 20px;
+        }
+
+        .wrap-input {
+            position: relative;
+            width: 100%;
+        }
+
+        .input {
+            font-size: 14px;
+            padding: 10px;
+            width: calc(100% - 20px);
+            border: 1px solid #007bff;
+            border-radius: 5px;
+            transition: border-color 0.3s ease;
+        }
+
+        .input:focus {
+            border-color: #0056b3;
+        }
+
+        .focus-input::before {
+            content: "";
+            position: absolute;
+            width: calc(100% + 2px);
+            height: calc(100% + 2px);
+            border: 2px solid #0056b3;
+            top: -1px;
+            left: -1px;
+            border-radius: 5px;
+            pointer-events: none;
+            box-sizing: border-box;
+        }
+
+        .symbol-input {
+            font-size: 18px;
+            color: #007bff;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 10px;
+        }
+
+        .execute-btn {
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .execute-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+    <title>Image Prediction Form</title>
+</head>
+<body>
+
+<!-- form-section -->
+<section class="contact-section" id="predict1">
+    <div class="container">
+        <div class="centered">
+            <div class="sec-title">Upload an Image to Make a Prediction</div>
+        </div>
+        <form class="prediction-form" action="/result" method="post" enctype="multipart/form-data">
+            <img id="image-preview" alt="Image Preview" src="#">
+            <div class="input-container">
+                <div class="wrap-input" data-validate="Image file is required">
+                    <input class="input" id="image-source" name="file" onchange="previewImage();" type="file"
+                        alt="Input Image" accept="image/jpeg,image/jpg,image/png">
+                    <span class="focus-input"></span>
+                    <span class="symbol-input">
+                        <i class="fa fa-file" aria-hidden="true"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="button-container">
+                <button class="execute-btn" type="submit">
+                    Execute
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function previewImage() {
+            var preview = document.getElementById('image-preview');
+            var fileInput = document.getElementById('image-source');
+            var file = fileInput.files[0];
+
+            if (file) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    preview.src = e.target.result;
+                };
+
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
+</section>
+<!-- form-section end -->
+
+</body>
+</html>
